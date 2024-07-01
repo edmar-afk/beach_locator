@@ -1,0 +1,6 @@
+.bg {	
+    background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.926), rgba(255, 255, 255, 0.904)),url("../image/bg.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}

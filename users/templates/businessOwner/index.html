@@ -1,0 +1,70 @@
+{% load static tailwind_tags %}<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link
+			href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"
+			rel="stylesheet" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+			integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer" />
+		{% tailwind_css %}
+	</head>
+	<body>
+		<p class="mt-24 p-12 font-bold text-3xl">My businesses</p>
+		<!-- component -->
+		<div class="p-4 sm:p-24 flex flex-wrap items-center justify-center">
+			<div class="flex-shrink-0 m-6 relative overflow-hidden bg-teal-500 rounded-lg w-full max-w-xl shadow-lg">
+				<svg
+					class="absolute bottom-0 left-0 mb-8"
+					viewBox="0 0 375 283"
+					fill="none"
+					style="transform: scale(1.5); opacity: 0.1">
+					<rect
+						x="159.52"
+						y="175"
+						width="152"
+						height="152"
+						rx="8"
+						transform="rotate(-45 159.52 175)"
+						fill="white" />
+					<rect
+						y="107.48"
+						width="152"
+						height="152"
+						rx="8"
+						transform="rotate(-45 0 107.48)"
+						fill="white" />
+				</svg>
+				<div class="relative pt-10 px-10 flex items-center justify-center">
+					
+					<!-- <img
+						class="relative w-40"
+						src="https://user-images.githubusercontent.com/2805249/64069998-305de300-cc9a-11e9-8ae7-5a0fe00299f2.png"
+						alt="" /> -->
+						<p class="py-40">Image sa beach</p>
+				</div>
+				<div class="relative text-white px-6 pb-6 mt-6">
+					<span class="block opacity-75 -mb-1">Cave Resort</span>
+					<div class="flex justify-between">
+						<span class="block font-semibold text-xl">Pob. Guipos Zamboanga del Sur</span>
+						<span
+							class="bg-white rounded-full text-teal-500 text-xs font-bold px-3 py-2 leading-none flex items-center">
+							<i class="fa fa-eye mr-2" aria-hidden="true"></i> See more
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		{% include 'includes/businessOwnerSidebar.html' %}
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+	</body>
+</html>

@@ -1,0 +1,22 @@
+{% load static %}
+
+<nav class="fixed top-0 w-full flex items-center justify-between flex-wrap bg-teal-500 p-6 z-50">
+	<div class="flex flex-row items-center justify-between w-full">
+		<div class="flex items-center flex-shrink-0 text-white mr-6">
+			<img
+				src="{% static 'image/logo.jpg' %}"
+				width="40"
+				class="rounded-full mr-1"
+				alt="" />
+			<span class="font-semibold text-xl tracking-tight">Beach Locator</span>
+		</div>
+
+		<div class="flex justify-end">
+			<a
+				href="{% url 'login' %}"
+				class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white">
+				Login
+			</a>
+		</div>
+	</div>
+</nav>

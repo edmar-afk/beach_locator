@@ -1,0 +1,120 @@
+{% load static tailwind_tags%}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Login</title>
+		{% tailwind_css %}
+		<link
+			rel="stylesheet"
+			href="{% static 'css/style.css' %}" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+			integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer" />
+	</head>
+	<body class="bg">
+		{% include 'includes/nav.html' %}
+		<div class="font-[sans-serif] p-4 sm:p-24">
+			<div class="min-h-screen flex fle-col items-center justify-center py-6 px-4">
+				<div class="grid md:grid-cols-2 items-center gap-4 max-w-6xl w-full">
+					<div
+						class="border border-gray-300 rounded-lg p-6 max-w-md shadow-[0_2px_22px_-4px_rgba(93,96,127,0.2)] max-md:mx-auto">
+						<form
+							class="space-y-4"
+							method="post"
+							enctype="multipart/form-data">
+							{% csrf_token %}
+							<div class="mb-8">
+								<h3 class="text-gray-800 text-3xl font-extrabold">Sign in</h3>
+								{% for message in messages %} {% if message.level_tag == 'success' %}
+								<p class="text-center text-orange-600 font-bold mt-4 mb-4 text-md">{{message}}</p>
+								{% else %}
+								<p class="text-center text-red-400 font-bold mt-4 mb-4 text-md">{{message}}</p>
+								{%endif%} {% endfor %}
+								<p class="text-gray-500 text-sm mt-4 leading-relaxed">
+									Sign in to your account and explore a world of possibilities. Your journey begins here.
+								</p>
+							</div>
+
+							<div>
+								<label class="text-gray-800 text-sm mb-2 block">User name</label>
+								<div class="relative flex items-center">
+									<input
+										name="username"
+										type="text"
+										required
+										class="w-full text-sm text-gray-800 border border-gray-300 px-4 py-3 rounded-lg outline-green-600"
+										placeholder="Enter user name" />
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										fill="#bbb"
+										stroke="#bbb"
+										class="w-[18px] h-[18px] absolute right-4"
+										viewBox="0 0 24 24">
+										<circle
+											cx="10"
+											cy="7"
+											r="6"
+											data-original="#000000"></circle>
+										<path
+											d="M14 15H6a5 5 0 0 0-5 5 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 5 5 0 0 0-5-5zm8-4h-2.59l.3-.29a1 1 0 0 0-1.42-1.42l-2 2a1 1 0 0 0 0 1.42l2 2a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42l-.3-.29H22a1 1 0 0 0 0-2z"
+											data-original="#000000"></path>
+									</svg>
+								</div>
+							</div>
+							<div>
+								<label class="text-gray-800 text-sm mb-2 block">Password</label>
+								<div class="relative flex items-center">
+									<input
+										name="password"
+										type="password"
+										required
+										class="w-full text-sm text-gray-800 border border-gray-300 px-4 py-3 rounded-lg outline-green-600"
+										placeholder="Enter password" />
+								</div>
+							</div>
+
+							<div class="flex flex-wrap items-center justify-between gap-4">
+								<div class="text-sm"></div>
+							</div>
+
+							<div class="!mt-8">
+								<button
+									type="submit"
+									name="submit"
+									class="w-full shadow-xl py-3 px-4 text-sm tracking-wide rounded-lg text-white bg-green-600 hover:bg-green-700 focus:outline-none">
+									<i class="fas fa-door-open"></i>
+									Log in
+								</button>
+							</div>
+
+							<p class="text-sm !mt-8 text-center text-gray-800">
+								Don't have an account
+								<a
+									href="{% url 'register' %}"
+									class="text-green-600 font-semibold hover:underline ml-1 whitespace-nowrap">
+									<i
+										class="fa fa-user-plus"
+										aria-hidden="true"></i>
+									Register here
+								</a>
+							</p>
+						</form>
+					</div>
+					<div class="lg:h-[400px] md:h-[300px] max-md:mt-8">
+						<img
+							src="https://readymadeui.com/login-image.webp"
+							class="w-full h-full max-md:w-4/5 mx-auto block object-cover"
+							alt="Dining Experience" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

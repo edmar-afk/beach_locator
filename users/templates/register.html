@@ -1,0 +1,284 @@
+{% load static tailwind_tags%}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Register</title>
+		{% tailwind_css %}
+		<link
+			rel="stylesheet"
+			href="{% static 'css/style.css' %}" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+			integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer" />
+		<link
+			href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.4.1/flowbite.min.css"
+			rel="stylesheet" />
+
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+		<style>
+			.hidden {
+				display: none;
+			}
+			.peer-checked\:text-blue-500:checked + label {
+				color: #3b82f6;
+				border-color: #2563eb;
+			}
+		</style>
+	</head>
+	<body class="bg">
+		{% include 'includes/nav.html' %}
+		<div class="font-[sans-serif] p-4 sm:p-24">
+			<center>
+				<div class="min-h-screen flex fle-col items-center justify-center py-6 px-4 mx-auto">
+					<div class="w-full">
+						{% if messages %}
+						<div class="messages">
+							{% for message in messages %}
+							<div class="text-center font-bold text-red-600 text-lg">{{ message }}</div>
+							{% endfor %}
+						</div>
+						{% endif %}
+
+						<div
+							class="border border-gray-300 bg-gray-100/90 rounded-lg p-6 max-w-lg shadow-[0_2px_22px_-4px_rgba(93,96,127,0.2)] max-md:mx-auto">
+							<form
+								class="space-y-4"
+								method="post"
+								enctype="multipart/form-data">
+								{% csrf_token %}
+								<div class="mb-8">
+									<h3 class="text-gray-800 text-3xl font-extrabold text-center">Register</h3>
+									<p class="text-gray-500 text-sm mt-4 leading-relaxed text-center">Fill the fields below</p>
+								</div>
+
+								<div>
+									<label class="text-gray-800 text-sm mb-2 block text-left">User name</label>
+									<div class="relative flex items-center">
+										<input
+											name="username"
+											type="text"
+											required
+											class="w-full text-sm text-gray-800 border border-gray-300 px-4 py-3 rounded-lg outline-blue-600"
+											placeholder="Enter user name" />
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											fill="#bbb"
+											stroke="#bbb"
+											class="w-[18px] h-[18px] absolute right-4"
+											viewBox="0 0 24 24">
+											<circle
+												cx="10"
+												cy="7"
+												r="6"
+												data-original="#000000"></circle>
+											<path
+												d="M14 15H6a5 5 0 0 0-5 5 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 5 5 0 0 0-5-5zm8-4h-2.59l.3-.29a1 1 0 0 0-1.42-1.42l-2 2a1 1 0 0 0 0 1.42l2 2a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42l-.3-.29H22a1 1 0 0 0 0-2z"
+												data-original="#000000"></path>
+										</svg>
+									</div>
+								</div>
+
+								<div>
+									<label class="text-gray-800 text-sm mb-2 block text-left">Full Name</label>
+									<div class="relative flex items-center">
+										<input
+											name="fullname"
+											type="text"
+											required
+											class="w-full text-sm text-gray-800 border border-gray-300 px-4 py-3 rounded-lg outline-blue-600"
+											placeholder="Enter Full Name" />
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											fill="#bbb"
+											stroke="#bbb"
+											class="w-[18px] h-[18px] absolute right-4"
+											viewBox="0 0 24 24">
+											<circle
+												cx="10"
+												cy="7"
+												r="6"
+												data-original="#000000"></circle>
+											<path
+												d="M14 15H6a5 5 0 0 0-5 5 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 5 5 0 0 0-5-5zm8-4h-2.59l.3-.29a1 1 0 0 0-1.42-1.42l-2 2a1 1 0 0 0 0 1.42l2 2a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42l-.3-.29H22a1 1 0 0 0 0-2z"
+												data-original="#000000"></path>
+										</svg>
+									</div>
+								</div>
+
+								<div>
+									<label class="text-gray-800 text-sm mb-2 block text-left">Contact No.</label>
+									<div class="relative flex items-center">
+										<input
+											name="contact"
+											type="number"
+											required
+											class="w-full text-sm text-gray-800 border border-gray-300 px-4 py-3 rounded-lg outline-blue-600"
+											placeholder="Your age" />
+										<i
+											class="fa fa-hashtag absolute right-4 text-gray-400"
+											aria-hidden="true"></i>
+									</div>
+								</div>
+
+								
+								<div class="mt-3">
+									<h3 class="mb-5 text-sm font-medium text-gray-900 text-center">Tell us more about you</h3>
+									<ul class="grid w-full gap-6 md:grid-cols-2">
+										<li>
+											<input
+												type="radio"
+												id="customer"
+												name="role"
+												value="Customer"
+												class="hidden peer"
+												required
+												checked />
+											<label
+												for="customer"
+												class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer hover:text-gray-300 peer-checked:text-blue-500 peer-checked:border-blue-600">
+												<div class="block">
+													<div class="w-full text-left">
+														I'm a
+														<br />
+														Customer
+													</div>
+												</div>
+												<i
+													class="fa fa-users"
+													aria-hidden="true"></i>
+											</label>
+										</li>
+										<li>
+											<input
+												type="radio"
+												id="owner"
+												name="role"
+												value="Business Owner"
+												class="hidden peer" />
+											<label
+												for="owner"
+												class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer hover:text-gray-300 peer-checked:text-blue-500 peer-checked:border-blue-600">
+												<div class="block">
+													<div class="w-full text-left">I'm a Business Owner</div>
+												</div>
+
+												<i class="fas fa-user-check ms-3"></i>
+											</label>
+										</li>
+									</ul>
+								</div>
+								<div class="mt3">
+									<div
+										id="business-owner-inputs"
+										class="hidden">
+										<input
+											type="text"
+											name="location"
+											placeholder="Location"
+											class="border p-2 mb-2 w-full" />
+										<input
+											type="text"
+											name="email"
+											placeholder="Email"
+											class="border p-2 mb-2 w-full" />
+									</div>
+								</div>
+								<div>
+									<p class="text-gray-800 text-sm mb-2 text-left">Password</p>
+									<div class="relative flex items-center">
+										<input
+											type="password"
+											name="password1"
+											required
+											class="w-full text-sm text-gray-800 border border-gray-300 px-4 py-3 rounded-lg outline-blue-600"
+											placeholder="Enter password" />
+										<i
+											class="fa fa-lock absolute right-4 text-gray-400"
+											aria-hidden="true"></i>
+									</div>
+								</div>
+
+								<div>
+									<p class="text-gray-800 text-sm mb-2 text-left">Retype Password</p>
+									<div class="relative flex items-center">
+										<input
+											type="password"
+											name="password2"
+											required
+											class="w-full text-sm text-gray-800 border border-gray-300 px-4 py-3 rounded-lg outline-blue-600"
+											placeholder="Re-enter password" />
+										<i
+											class="fa fa-lock absolute right-4 text-gray-400"
+											aria-hidden="true"></i>
+									</div>
+								</div>
+
+								<div class="flex flex-wrap items-center justify-between gap-4">
+									<div class="text-sm"></div>
+								</div>
+
+								<div class="!mt-8">
+									<button
+										type="submit"
+										name="submit"
+										class="w-full shadow-xl py-3 px-4 text-sm tracking-wide rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none">
+										<i
+											class="fa fa-user-plus"
+											aria-hidden="true"></i>
+										Register
+									</button>
+								</div>
+
+								<p class="text-sm !mt-8 text-center text-gray-800">
+									Already have an Account?
+									<a
+										href="{% url 'login' %}"
+										class="text-blue-600 font-semibold hover:underline ml-1 whitespace-nowrap">
+										<i class="fas fa-door-open"></i>
+										Login here
+									</a>
+								</p>
+							</form>
+						</div>
+					</div>
+				</div>
+			</center>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.4.1/flowbite.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+		<script>
+			flatpickr("#default-datepicker", {
+				dateFormat: "Y-m-d",
+			});
+		</script>
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				const customerRadio = document.getElementById("customer");
+				const ownerRadio = document.getElementById("owner");
+				const businessOwnerInputs = document.getElementById("business-owner-inputs");
+
+				customerRadio.addEventListener("change", function () {
+					if (customerRadio.checked) {
+						businessOwnerInputs.classList.add("hidden");
+					}
+				});
+
+				ownerRadio.addEventListener("change", function () {
+					if (ownerRadio.checked) {
+						businessOwnerInputs.classList.remove("hidden");
+					}
+				});
+			});
+		</script>
+	</body>
+</html>
