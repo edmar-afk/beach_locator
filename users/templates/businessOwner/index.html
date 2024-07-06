@@ -18,10 +18,12 @@
 		{% tailwind_css %}
 	</head>
 	<body>
+		{% include 'includes/businessOwnerSidebar.html' %}
 		<p class="mt-24 p-12 font-bold text-3xl">My businesses</p>
 		<!-- component -->
+		{% if user.is_authenticated %}
 		<div class="p-4 sm:p-24 flex flex-wrap items-center justify-center">
-			<div class="flex-shrink-0 m-6 relative overflow-hidden bg-teal-500 rounded-lg w-full max-w-xl shadow-lg">
+			<div class="flex-shrink-0 m-6 relative overflow-hidden bg-teal-500 rounded-lg w-full max-w-6xl shadow-2xl">
 				<svg
 					class="absolute bottom-0 left-0 mb-8"
 					viewBox="0 0 375 283"
@@ -44,27 +46,25 @@
 						fill="white" />
 				</svg>
 				<div class="relative pt-10 px-10 flex items-center justify-center">
+					<img
+						class="relative w-full"
+						src="{{user.profile.business_pic.url}}"
+						alt="" />
 					
-					<!-- <img
-						class="relative w-40"
-						src="https://user-images.githubusercontent.com/2805249/64069998-305de300-cc9a-11e9-8ae7-5a0fe00299f2.png"
-						alt="" /> -->
-						<p class="py-40">Image sa beach</p>
 				</div>
 				<div class="relative text-white px-6 pb-6 mt-6">
-					<span class="block opacity-75 -mb-1">Cave Resort</span>
+					<span class="block opacity-75 -mb-1 text-2xl">{{user.profile.business_name}}</span>
 					<div class="flex justify-between">
-						<span class="block font-semibold text-xl">Pob. Guipos Zamboanga del Sur</span>
+						<span class="block font-semibold text-4xl">{{user.profile.location}}</span>
 						<span
-							class="bg-white rounded-full text-teal-500 text-xs font-bold px-3 py-2 leading-none flex items-center">
-							<i class="fa fa-eye mr-2" aria-hidden="true"></i> See more
+							class="bg-white rounded-full text-teal-500 text-2xl font-bold px-3 py-2 leading-none flex items-center">
+							{{user.profile.contact}}
 						</span>
 					</div>
 				</div>
 			</div>
 		</div>
-
-		{% include 'includes/businessOwnerSidebar.html' %}
+		{% endif %}
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 	</body>
 </html>

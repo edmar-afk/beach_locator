@@ -1,0 +1,129 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link
+			href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"
+			rel="stylesheet" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+			integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer" />
+		{% tailwind_css %}
+	</head>
+	<body>
+		{% include 'includes/customerSidebar.html' %}
+
+		<p class="mt-24 p-12 font-semibold text-2xl">
+			You're viewing
+			<span class="underline">{{ user.profile.business_name }}</span>
+			Resort
+		</p>
+		<a
+			href="{% url 'customerDashboard' %}"
+			class="text-xl ml-14 text-blue-700">
+			<i
+				class="fa fa-backward"
+				aria-hidden="true"></i>
+			Back
+		</a>
+		<!-- component -->
+
+		<div class="md:flex items-start justify-center py-12 2xl:px-20 md:px-6 px-4">
+			<div class="xl:w-2/6 lg:w-2/5 w-80 block">
+				<img
+					class="w-full"
+					alt="{{ user.profile.business_name }}"
+					src="{{ user.profile.business_pic.url }}" />
+			</div>
+
+			<div class="xl:w-2/5 md:w-1/2 lg:ml-8 md:ml-6 md:mt-0 mt-6">
+				<div class="border-b border-gray-200 pb-6">
+					<p class="text-sm leading-none text-gray-600">Resort Owner</p>
+					<h1 class="lg:text-2xl text-xl font-semibold lg:leading-6 leading-7 text-gray-800 mt-2">
+						{{ user.first_name }}
+					</h1>
+				</div>
+				<div class="py-4 border-b border-gray-200 flex items-center justify-between">
+					<p class="text-base leading-4 text-gray-800">Facebook Page:</p>
+					<div class="flex items-center justify-center">
+						<p class="text-sm leading-none text-gray-600 mr-3">
+							<a
+								href="{{ user.profile.fb_account }}"
+								class="text-blue-700 font-bold"
+								target="_blank">
+								Visit
+							</a>
+						</p>
+					</div>
+				</div>
+				<div class="py-4 border-b border-gray-200 flex items-center justify-between">
+					<p class="text-base leading-4 text-gray-800">Email:</p>
+					<div class="flex items-center justify-center">
+						<p class="text-sm leading-none text-gray-600 mr-3">{{ user.profile.email }}</p>
+					</div>
+				</div>
+				<div class="py-4 border-b border-gray-200 flex items-center justify-between">
+					<p class="text-base leading-4 text-gray-800">Contact Number:</p>
+					<div class="flex items-center justify-center">
+						<p class="text-sm leading-none text-gray-600">{{ user.profile.contact }}</p>
+					</div>
+				</div>
+				<div class="py-4 border-b border-gray-200 flex items-center justify-between">
+					<p class="text-base leading-4 text-gray-800">Barangay:</p>
+					<div class="flex items-center justify-center">
+						<p class="text-sm leading-none text-gray-600 mr-3">{{ user.profile.barangay }}</p>
+					</div>
+				</div>
+				<div class="py-4 border-b border-gray-200 flex items-center justify-between">
+					<p class="text-base leading-4 text-gray-800">Province:</p>
+					<div class="flex items-center justify-center">
+						<p class="text-sm leading-none text-gray-600 mr-3">{{ user.profile.province }}</p>
+					</div>
+				</div>
+				<div class="py-4 border-b border-gray-200 flex items-center justify-between">
+					<p class="text-base leading-4 text-gray-800">Municipality:</p>
+					<div class="flex items-center justify-center">
+						<p class="text-sm leading-none text-gray-600 mr-3">{{ user.profile.municipality }}</p>
+					</div>
+				</div>
+				<button
+					class="bg-white mt-8 text-gray-900 hover:bg-gray-100 focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-base flex items-center justify-center leading-none w-full py-4 focus:outline-none">
+					Services/Offers
+				</button>
+				<div>
+					<div class="flex flex-col">
+						{% for offer in offers %}
+						<div class="flex flex-row justify-evenly items-center my-4">
+							<p class="text-base leading-4 text-gray-600">Offer Name: {{ offer.offer_name }}</p>
+							<p class="text-base leading-4 text-gray-600">Price: {{ offer.price }}</p>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			let elements = document.querySelectorAll("[data-menu]");
+			for (let i = 0; i < elements.length; i++) {
+				let main = elements[i];
+				main.addEventListener("click", function () {
+					let element = main.parentElement.parentElement;
+					let andicators = main.querySelectorAll("img");
+					let child = element.querySelector("#sect");
+					child.classList.toggle("hidden");
+					andicators[0].classList.toggle("rotate-180");
+				});
+			}
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+	</body>
+</html>

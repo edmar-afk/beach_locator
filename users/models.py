@@ -13,14 +13,27 @@ class Profile(models.Model):
     location = models.CharField(max_length=250, blank=True, default="")
     contact = models.CharField(max_length=250,blank=True, default="")
     email = models.CharField(max_length=250,blank=True, default="")
-    
+    business_name = models.CharField(max_length=250)
+    business_pic = models.FileField(upload_to='media/', validators=[FileExtensionValidator(allowed_extensions=['png', 'jpeg', 'jpg'])],)
+    location = models.CharField(max_length=250)
+    municipality = models.TextField(blank=True)
+    province = models.TextField(blank=True)
+    barangay = models.TextField(blank=True) 
+    fb_account = models.TextField(blank=True)
+   
+   
     def __str__(self):
         return self.user.username
-    
-class Business(models.Model):
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    business_name = models.CharField(max_length=250)
-    profile_pic = models.FileField(upload_to='media/', validators=[FileExtensionValidator(allowed_extensions=['png', 'jpeg', 'jpg'])],)
-    location = models.CharField(max_length=250)
-    contact = models.CharField(max_length=50)
+
+class Offer(models.Model):
+    business = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    offer_name = models.TextField()
+    price = models.TextField()
+
+
+class Response(models.Model):
+    sender = models.ForeignKey(User, on_delete=models.CASCADE)
+    reason = models.TextField()
+    message = models.TextField()
+    date_submitted = models.DateTimeField()
     

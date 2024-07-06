@@ -1,0 +1,136 @@
+{% load static tailwind_tags %}<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link
+			href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"
+			rel="stylesheet" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+			integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer" />
+		{% tailwind_css %}
+		<style>
+			.hidden {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		{% include 'includes/customerSidebar.html' %}
+		<p class="mt-24 p-12 font-bold text-3xl">Lists of Resorts</p>
+
+		<div class="max-w-4xl mx-auto">
+			<div class="relative">
+				<div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+					<svg
+						class="w-4 h-4 text-gray-500"
+						aria-hidden="true"
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 20 20">
+						<path
+							stroke="currentColor"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+					</svg>
+				</div>
+				<input
+					type="search"
+					id="default-search"
+					class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+					placeholder="Search desired Resorts here..."
+					required
+					oninput="searchResorts()" />
+				<button
+					type="submit"
+					class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">
+					<i
+						class="fa fa-search"
+						aria-hidden="true"></i>
+					Search Resort
+				</button>
+			</div>
+		</div>
+
+		<!-- component -->
+
+		<div
+			class="flex flex-row justify-evenly flex-wrap"
+			id="resort-list">
+			{% for list in resorts %}
+			<div class="p-4 sm:p-24 flex flex-wrap items-center justify-center resort-item">
+				<div class="flex-shrink-0 m-6 relative overflow-hidden bg-teal-500 rounded-lg w-full max-w-xl shadow-2xl">
+					<svg
+						class="absolute bottom-0 left-0 mb-8"
+						viewBox="0 0 375 283"
+						fill="none"
+						style="transform: scale(1.5); opacity: 0.1">
+						<rect
+							x="159.52"
+							y="175"
+							width="152"
+							height="152"
+							rx="8"
+							transform="rotate(-45 159.52 175)"
+							fill="white" />
+						<rect
+							y="107.48"
+							width="152"
+							height="152"
+							rx="8"
+							transform="rotate(-45 0 107.48)"
+							fill="white" />
+					</svg>
+					<div class="relative pt-10 px-10 flex items-center justify-center">
+						<img
+							class="relative w-96"
+							src="{{list.profile.business_pic.url}}"
+							alt="" />
+					</div>
+					<div class="relative text-white px-6 pb-6 mt-6">
+						<span class="block opacity-75 -mb-1 text-2xl">{{list.profile.business_name}}</span>
+						<div class="flex justify-between">
+							<span class="block font-semibold text-4xl">{{list.profile.location}}</span>
+							<a href="{% url 'resortDetails' list.id %}"
+ 								class="bg-white rounded-full text-teal-500 text-2xl font-bold px-3 py-2 leading-none flex items-center">
+								<i
+									class="fa fa-eye"
+									aria-hidden="true"></i>
+								View More
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+
+		<script>
+			function searchResorts() {
+				const searchInput = document.getElementById("default-search").value.toLowerCase();
+				const resortItems = document.querySelectorAll(".resort-item");
+
+				resortItems.forEach((item) => {
+					const businessName = item.querySelector(".relative.text-white .block.opacity-75").innerText.toLowerCase();
+					const location = item.querySelector(".relative.text-white .block.font-semibold").innerText.toLowerCase();
+
+					if (businessName.includes(searchInput) || location.includes(searchInput)) {
+						item.classList.remove("hidden");
+					} else {
+						item.classList.add("hidden");
+					}
+				});
+			}
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+	</body>
+</html>
